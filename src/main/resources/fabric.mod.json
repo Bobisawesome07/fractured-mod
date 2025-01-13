@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "fractured-mod",
+	"version": "${version}",
+	"name": "Fractured Mod",
+	"description": "Mod for the Factions of Fractured Realms server",
+	"authors": [
+		"Bobisawesome07",
+        "Sir Duckie"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/fractured-mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.fofr.FracturedMod"
+		],
+		"client": [
+			"com.fofr.FracturedModClient"
+		],
+		"fabric-datagen": [
+			"com.fofr.FracturedModDataGenerator"
+		]
+	},
+	"mixins": [
+		"fractured-mod.mixins.json",
+		{
+			"config": "fractured-mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
