@@ -14,5 +14,6 @@ public class FracturedMod implements ModInitializer {
 	public void onInitialize() {
 		ModItems.initialize();
 		LOGGER.info("Fracture Mod Initialized");
+		
 	}
 }
