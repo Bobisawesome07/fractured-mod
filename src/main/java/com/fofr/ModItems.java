@@ -1,5 +1,6 @@
 package com.fofr;
 
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -21,9 +22,8 @@ public class ModItems {
         return registeredItem;
     }
     public static final Item FRACTURED_SWORD = register(
-            new SwordItem(FracturedMaterial.INSTANCE, new Item.Settings(),
-            1.6)
-
+            new SwordItem(FracturedMaterial.INSTANCE, 7, 1.4f, new FabricItemSettings()),
+            "fractured_sword"
     );
     public static final Item FRACTURED_SHARD = register(
             new Item(new Item.Settings().maxCount(64)),
