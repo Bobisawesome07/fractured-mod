@@ -3,7 +3,7 @@
   "parent": "item/handheld",
   "texture_size": [32, 32],
   "textures": {
-    "0": "fracture-mod:item/fractured_sword"
+    "layer0": "fracture-mod:item/fractured_sword"
   },
   "elements": [
     {

@@ -22,7 +22,7 @@ public class ModItems {
         return registeredItem;
     }
     public static final Item FRACTURED_SWORD = register(
-            new SwordItem(FracturedMaterial.INSTANCE, 4, -2.4f, new FabricItemSettings()),
+            new SwordItem(FracturedMaterial.INSTANCE, -4, -2.6f, new FabricItemSettings()),
             "fractured_sword"
     );
     public static final Item FRACTURED_SHARD = register(
