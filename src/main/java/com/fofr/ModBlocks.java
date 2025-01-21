@@ -31,9 +31,8 @@ public class ModBlocks {
             true
             );
     public static void initialize() {
-//        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS)
-//                .register((itemGroup) -> itemGroup.add(FAKE_BEDROCK));
-        System.out.println("pls work bro");
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS)
+                .register((itemGroup) -> itemGroup.add(FAKE_BEDROCK));
     }
 
 

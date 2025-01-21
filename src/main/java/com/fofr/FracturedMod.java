@@ -23,6 +23,7 @@ public class FracturedMod implements ModInitializer {
 	public void onInitialize() {
 
 		ModItems.initialize();
+		ModBlocks.initialize();
 		LOGGER.info("Fracture Mod Initialized");
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
