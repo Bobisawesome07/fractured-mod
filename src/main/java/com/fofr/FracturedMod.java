@@ -17,12 +17,12 @@ public class FracturedMod implements ModInitializer {
 
 	public static final String MOD_ID = "fractured-mod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	public static final RegistryKey<DimensionType> POCKET_DIMENSION_TYPE = RegistryKey.of(RegistryKeys.DIMENSION_TYPE, new Identifier(MOD_ID, "pocketType"));
 
 	@Override
 	public void onInitialize() {
 
 		ModItems.initialize();
+		ModBlocks.initialize();
 		LOGGER.info("Fracture Mod Initialized");
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {

@@ -29,6 +29,7 @@ public class ModItems {
             new Item(new Item.Settings().maxCount(64)),
             "fractured_shard"
     );
+
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
                 .register((itemGroup) -> itemGroup.add(ModItems.FRACTURED_SHARD));
