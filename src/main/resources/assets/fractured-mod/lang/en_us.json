@@ -1,5 +1,6 @@
 {
   "itemgroup.fractured": "Fractured Items",
+  "item.fractured-mod.general.tooltip": "Fractured Items",
 
   "item.fractured-mod.fractured_sword": "Fractured Sword",
   "item.fractured-mod.fractured_sword.tooltip": "A blade so sharp that it can cut spacetime itself.",

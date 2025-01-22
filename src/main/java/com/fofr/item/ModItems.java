@@ -19,8 +19,8 @@ public class ModItems {
             .maxCount(1)
             .maxDamage(8)
     ));
-    public static final Item FRACTURED_SHARD = registerItem("fractured_shard", new Item(new FabricItemSettings()));
-    public static final Item FRACTURED_UPGRADE_TEMPLATE = registerItem("fractured_upgrade_template", new Item(new FabricItemSettings()));
+    public static final Item FRACTURED_SHARD = registerItem("fractured_shard", new FracturedItem(new FabricItemSettings()));
+    public static final Item FRACTURED_UPGRADE_TEMPLATE = registerItem("fractured_upgrade_template", new FracturedItem(new FabricItemSettings()));
 
 
     // ---------- Tab Methods (entries.add for and item) ------------------------------------------------------------------------------- //
