@@ -1,3 +1,9 @@
 {
-  "item.mod_id.fractured_sword": "Fractured Sword"
+  "itemgroup.fractured": "Fractured Items",
+
+  "item.fractured-mod.fractured_sword": "Fractured Sword",
+  "item.fractured-mod.fractured_sword.tooltip": "A blade so sharp that it can cut spacetime itself.",
+  "item.fractured-mod.fractured_shard": "Fractured Shard",
+  "block.fractured-mod.fake_bedrock": "Fake Bedrock",
+  "item.fractured-mod.fractured_upgrade_template": "Fractured Item Upgrade Template"
 }
