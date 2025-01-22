@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:smithing_transform",
+    "template": {
+        "item": "fractured-mod:fractured_upgrade_template"
+    },
+    "base": {
+        "item": "minecraft:netherite_sword"
+    },
+    "addition": {
+        "item": "fractured-mod:fractured_shard"
+    },
+    "result": {
+        "item": "fractured-mod:fractured_sword",
+        "count": 1
+    }
+}
