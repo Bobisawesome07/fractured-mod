@@ -24,9 +24,10 @@ public class FracturedMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		ModItemGroups.registerItemGroups();
+    ModItemGroups.registerItemGroups();
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
+    
 		LOGGER.info("Fracture Mod Initialized");
 
 	}
