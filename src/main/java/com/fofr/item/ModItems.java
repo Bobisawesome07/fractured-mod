@@ -1,9 +1,7 @@
 package com.fofr.item;
 
 import com.fofr.FracturedMod;
-import com.fofr.block.ModBlocks;
 import com.fofr.item.custom.FracturedSwordItem;
-import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;

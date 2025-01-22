@@ -1,7 +1,6 @@
 package com.fofr.item;
 
 import com.fofr.FracturedMod;
-import com.fofr.item.custom.FracturedSwordItem;
 import com.fofr.block.ModBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
