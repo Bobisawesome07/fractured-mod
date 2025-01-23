@@ -15,7 +15,6 @@ public class ModItems {
     // ---------- Declare a new item --------------------------------------------------------------------------------------------------- //
     public static final Item FRACTURED_SWORD = registerItem("fractured_sword", new FracturedSwordItem(new FabricItemSettings()
             .maxCount(1)
-            .maxDamage(8)
     ));
     public static final Item FRACTURED_SHARD = registerItem("fractured_shard", new FracturedItem(new FabricItemSettings()));
     public static final Item FRACTURED_UPGRADE_TEMPLATE = registerItem("fractured_upgrade_template", new FracturedItem(new FabricItemSettings()));

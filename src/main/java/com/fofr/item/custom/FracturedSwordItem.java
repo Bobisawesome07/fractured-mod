@@ -2,8 +2,7 @@ package com.fofr.item.custom;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -13,9 +12,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FracturedSwordItem extends Item {
+public class FracturedSwordItem extends SwordItem {
     public FracturedSwordItem(Settings settings) {
-        super(settings);
+        // target number - offset (not sure why fabric does this..?)
+        super(ToolMaterials.NETHERITE, 8-5, 5-4, settings);
+
+
+
     }
 
     @Override
@@ -28,7 +31,7 @@ public class FracturedSwordItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.fractured-mod.fractured_sword.tooltip").formatted(Formatting.GOLD).formatted(Formatting.ITALIC).formatted(Formatting.BOLD));
+        tooltip.add(Text.translatable("item.fractured-mod.fractured_sword.tooltip").formatted(Formatting.GOLD).formatted(Formatting.BOLD));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }
