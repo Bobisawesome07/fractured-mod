@@ -5,14 +5,6 @@ import com.fofr.item.ModItemGroups;
 import com.fofr.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.dimension.DimensionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

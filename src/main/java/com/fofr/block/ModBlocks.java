@@ -1,6 +1,7 @@
 package com.fofr.block;
 
 import com.fofr.FracturedMod;
+import com.fofr.item.FracturedBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -14,7 +15,7 @@ import net.minecraft.util.Identifier;
 public class ModBlocks {
     // ---------- Declare a new block -------------------------------------------------------------------------------------------------- //
     public static final Block FAKE_BEDROCK = registerBlock("fake_bedrock",
-            new Block(FabricBlockSettings.copyOf(Blocks.STONE)));
+            new FracturedBlock(FabricBlockSettings.copyOf(Blocks.STONE)));
 
 
 

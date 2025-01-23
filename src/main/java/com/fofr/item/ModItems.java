@@ -1,9 +1,7 @@
 package com.fofr.item;
 
 import com.fofr.FracturedMod;
-import com.fofr.block.ModBlocks;
 import com.fofr.item.custom.FracturedSwordItem;
-import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -17,10 +15,9 @@ public class ModItems {
     // ---------- Declare a new item --------------------------------------------------------------------------------------------------- //
     public static final Item FRACTURED_SWORD = registerItem("fractured_sword", new FracturedSwordItem(new FabricItemSettings()
             .maxCount(1)
-            .maxDamage(8)
     ));
-    public static final Item FRACTURED_SHARD = registerItem("fractured_shard", new Item(new FabricItemSettings()));
-    public static final Item FRACTURED_UPGRADE_TEMPLATE = registerItem("fractured_upgrade_template", new Item(new FabricItemSettings()));
+    public static final Item FRACTURED_SHARD = registerItem("fractured_shard", new FracturedItem(new FabricItemSettings()));
+    public static final Item FRACTURED_UPGRADE_TEMPLATE = registerItem("fractured_upgrade_template", new FracturedItem(new FabricItemSettings()));
 
 
     // ---------- Tab Methods (entries.add for and item) ------------------------------------------------------------------------------- //
