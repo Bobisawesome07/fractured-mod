@@ -7,9 +7,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.Ownable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
+
+import static com.fofr.FracturedMod.POCKET_DIMENSION_PORTAL;
+
 //big class lol, can't fucking imagine making an entity with a brain bruh
 public class PocketDimensionPortal extends Entity implements Ownable {
     private static final String DATA_KEY = "data";
@@ -20,13 +24,13 @@ public class PocketDimensionPortal extends Entity implements Ownable {
 
     @Nullable
 	private UUID ownerUuid;
-    public PocketDimensionPortal(EntityType<? extends Entity> entityType, World world) {
-        super(entityType, world);
+    public PocketDimensionPortal(EntityType<?> type, World world) {
+        super(type, world);
+        this.readCustomDataFromNbt(data);
         this.noClip = false;
     }
-    //fuck this bullshit for now idk how to fix the error
     public PocketDimensionPortal(World world, double x, double y, double z) {
-        this(EntityType.POCKET_DIMENSION_PORTAL, world);
+        this(POCKET_DIMENSION_PORTAL, world);
         this.setPosition(x, y, z);
     }
     public int getLifetime() {
