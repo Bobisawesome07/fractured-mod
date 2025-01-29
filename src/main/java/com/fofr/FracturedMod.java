@@ -7,9 +7,7 @@ import com.fofr.item.ModItemGroups;
 import com.fofr.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -23,16 +21,16 @@ public class FracturedMod implements ModInitializer {
 
 	public static final EntityType<Troll> TROLL = Registry.register(
             Registries.ENTITY_TYPE,
-            Identifier.of("fratured-mod", "troll"),
-            EntityType.Builder.create(Troll::new, SpawnGroup.CREATURE).setDimensions(0.75f,0.8f).build("troll:")
+            Identifier.of("fractured-mod", "troll"),
+            EntityType.Builder.create(Troll::new, SpawnGroup.CREATURE).setDimensions(0.75f,0.8f).build("troll")
     );
-	public static final EntityType<PocketDimensionPortal> POCKET_DIMENSION_PORTAL = Registry.register(
-			Registries.ENTITY_TYPE,
-			Identifier.of("fractured-mod","pocket_dimension_portal"),
-			EntityType.Builder.create(PocketDimensionPortal::new),
-			SpawnGroup.MISC,
-			
-	);
+	public static final EntityType<PocketDimensionPortal> POCKET_DIMENSION_PORTAL=Registry.register(
+                Registries.ENTITY_TYPE,
+                new Identifier(MOD_ID, "pocket_dimension_portal"),
+				EntityType.Builder.<PocketDimensionPortal>create(PocketDimensionPortal::new, SpawnGroup.MISC)
+                        .setDimensions(1f,2f)
+                        .build("pocket_dimension_portal")
+        );
 
 	@Override
 	public void onInitialize() {
@@ -41,7 +39,6 @@ public class FracturedMod implements ModInitializer {
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
 		FabricDefaultAttributeRegistry.register(TROLL, Troll.createMobAttributes());
-		FabricDefaultAttributeRegistry.register(POCKET_DIMENSION_PORTAL, PocketDimensionPortal.)
     
 		LOGGER.info("Fracture Mod Initialized");
 
