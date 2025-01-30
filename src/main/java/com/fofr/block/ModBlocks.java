@@ -19,7 +19,7 @@ public class ModBlocks {
             new FracturedBlock(FabricBlockSettings.copyOf(Blocks.STONE)));
 
     public static final Block POCKET_PORTAL = registerBlock("pocket_portal",
-            new Block(FabricBlockSettings.create().pistonBehavior(PistonBehavior.BLOCK).noCollision().hardness(-1f).collidable(false).luminance(11)));
+            new PocketPortalBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.BLOCK).noCollision().hardness(-1f).collidable(false).luminance(11)));
 
     // --------- Helper Methods ------------------------------------------------------------------------------------------------------- //
     private static Block registerBlock(String name, Block block) {

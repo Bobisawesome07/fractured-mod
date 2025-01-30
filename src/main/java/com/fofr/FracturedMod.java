@@ -1,5 +1,6 @@
 package com.fofr;
 
+import com.fofr.block.ModBlockEntities;
 import com.fofr.block.ModBlocks;
 import com.fofr.item.ModItemGroups;
 import com.fofr.item.ModItems;
@@ -19,6 +20,7 @@ public class FracturedMod implements ModInitializer {
     ModItemGroups.registerItemGroups();
 		ModItems.registerItems();
 		ModBlocks.registerBlocks();
+		ModBlockEntities.registerBlockEntities();
     
 		LOGGER.info("Fracture Mod Initialized");
 
