@@ -5,8 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,11 +23,13 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
         return new PocketPortalBlockEntity(pos, state);
     }
 
+    @Nullable
     @Override
-    public void scheduledTick(BlockState state, World world, BlockPos pos, Random random) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof PocketPortalBlockEntity portal) {
-            portal.tick();
-        }
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return world.isClient ? null : (world1, pos, state1, blockEntity) -> {
+            if (blockEntity instanceof PocketPortalBlockEntity portal) {
+                PocketPortalBlockEntity.tick(world1, pos, state1, portal);
+            }
+        };
     }
 }

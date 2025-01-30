@@ -1,6 +1,7 @@
 package com.fofr.block;
 
 import com.fofr.FracturedMod;
+import com.fofr.block.custom.PocketPortalBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
