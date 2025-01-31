@@ -6,9 +6,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.server.world.ChunkTicketType;
-import net.minecraft.server.world.ServerWorld;
-
 public class PocketPortalBlockEntity extends BlockEntity {
 
     private int duration = 200; // 200 ticks = 10 seconds

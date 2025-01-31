@@ -29,6 +29,7 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
         return world.isClient ? null : (world1, pos, state1, blockEntity) -> {
             if (blockEntity instanceof PocketPortalBlockEntity portal) {
                 PocketPortalBlockEntity.tick(world1, pos, state1, portal);
+                
             }
         };
     }
