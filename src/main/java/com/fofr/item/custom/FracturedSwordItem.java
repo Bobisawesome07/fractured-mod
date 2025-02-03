@@ -41,18 +41,10 @@ public class FracturedSwordItem extends Item {
         return(world.getBlockState(blockPos).getBlock()==Blocks.AIR||world.getBlockState(blockPos).getBlock()==Blocks.CAVE_AIR);
     }
     private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace){
-        HashMap<Direction, BlockPos> neighboringBlocks=new HashMap<net.minecraft.util.math.Direction, BlockPos>();
-        neighboringBlocks.put(Direction.EAST,blockPos.east());
-        neighboringBlocks.put(Direction.WEST,blockPos.west());
-        neighboringBlocks.put(Direction.UP,blockPos.up());
-        neighboringBlocks.put(Direction.DOWN,blockPos.down());
-        neighboringBlocks.put(Direction.SOUTH,blockPos.south());
-        neighboringBlocks.put(Direction.NORTH,blockPos.north());
-        if (lookedAtFace != null && neighboringBlocks.containsKey(lookedAtFace)) {
-            BlockPos targetBlock = neighboringBlocks.get(lookedAtFace);
-            if (world.getBlockState(targetBlock).isAir()) {  // Or other condition
-                LOGGER.debug("Setting portal block at " + targetBlock);
-                world.setBlockState(targetBlock, ModBlocks.POCKET_PORTAL.getDefaultState());
+        if (lookedAtFace != null) {
+            if (world.getBlockState(blockPos).isAir()) {  // Or other condition
+                LOGGER.debug("Setting portal block at " + blockPos);
+                world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.getDefaultState());
             }
         }
     }
