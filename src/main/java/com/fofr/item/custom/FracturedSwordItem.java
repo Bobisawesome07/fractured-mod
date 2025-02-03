@@ -1,8 +1,6 @@
 package com.fofr.item.custom;
 
-import com.fofr.block.ModBlockEntities;
 import com.fofr.block.ModBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,8 +19,6 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static com.fofr.FracturedMod.MOD_ID;
