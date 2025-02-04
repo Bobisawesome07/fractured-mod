@@ -8,5 +8,6 @@
             "type": "add",
             "pluginName": "com.github.catppuccin.fleet"
         }
-    ]
+    ],
+    "java.debugger.reloadClassesAfterCompilation": "Always"
 }

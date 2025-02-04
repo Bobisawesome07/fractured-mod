@@ -26,7 +26,7 @@ import static com.fofr.FracturedMod.MOD_ID;
 public class FracturedSwordItem extends Item {
     
     private void resetCooldown(PlayerEntity user, Item sword){
-        user.getItemCooldownManager().set(sword, 300);
+        user.getItemCooldownManager().set(sword, 3000);
     }
     public FracturedSwordItem(Settings settings) {
         super(settings);
@@ -54,6 +54,7 @@ public class FracturedSwordItem extends Item {
             if(hitResult.getType() == HitResult.Type.BLOCK){
                 LOGGER.debug("Raycast successful, attempting to gen portal block");
                 createPortal(world, blockPos, blockHitResult.getSide());
+                resetCooldown(user, this);
             }
             else{
                 LOGGER.debug("Raycast missed");
