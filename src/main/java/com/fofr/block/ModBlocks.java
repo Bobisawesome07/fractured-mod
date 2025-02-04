@@ -1,11 +1,12 @@
 package com.fofr.block;
 
 import com.fofr.FracturedMod;
-import com.fofr.item.FracturedBlock;
+import com.fofr.block.custom.PocketPortalBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -15,12 +16,10 @@ import net.minecraft.util.Identifier;
 public class ModBlocks {
     // ---------- Declare a new block -------------------------------------------------------------------------------------------------- //
     public static final Block FAKE_BEDROCK = registerBlock("fake_bedrock",
-            new FracturedBlock(FabricBlockSettings.copyOf(Blocks.STONE)));
+            new Block(FabricBlockSettings.copyOf(Blocks.STONE)));
 
-
-
-
-
+    public static final Block POCKET_PORTAL = registerBlock("pocket_portal",
+            new PocketPortalBlock(FabricBlockSettings.create().pistonBehavior(PistonBehavior.BLOCK).noCollision().hardness(-1f).collidable(false).luminance(11)));
 
     // --------- Helper Methods ------------------------------------------------------------------------------------------------------- //
     private static Block registerBlock(String name, Block block) {
