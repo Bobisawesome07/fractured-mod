@@ -1,13 +1,22 @@
 package com.fofr.util;
 
 import com.fofr.FracturedMod;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.RegistryOps;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.ServerDynamicRegistryType;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import net.minecraft.registry.RegistryKey;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionOptions;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.DimensionTypes;
+import net.minecraft.world.gen.GeneratorOptions;
 
 public class DimensionUtils {
     public static RegistryKey<World> getPlayerDimensionKey(ServerPlayerEntity player) {
@@ -16,8 +25,10 @@ public class DimensionUtils {
 
     public static void createPlayerDimension(MinecraftServer server, ServerPlayerEntity player) {
         RegistryKey<World> playerDimensionKey = getPlayerDimensionKey(player);
-        if (server.getWorld(playerDimensionKey)==null) {
-            server.getWorlds().add(playerDimensionKey, new World(server, server.getWorkerExecutor(), server.getSaveProperties(), playerDimensionKey, DimensionTypes.OVERWORLD, server.getProfiler(), true, false, 0));
+        if (server.getWorld(playerDimensionKey) == null) {
+            Registry<DimensionOptions> dimensionOptionsRegistry = server.getRegistryManager().get(Registry.DIMENSION_OPTIONS_KEY);
+            DimensionOptions dimensionOptions = new DimensionOptions(() -> DimensionType.OVERWORLD, GeneratorOptions.createDefaultOverworldGenerator(server.getRegistryManager()));
+            dimensionOptionsRegistry.add(playerDimensionKey, dimensionOptions);
         }
     }
 
