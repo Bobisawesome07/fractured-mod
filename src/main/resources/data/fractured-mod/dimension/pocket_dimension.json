@@ -1,0 +1,18 @@
+{
+    "type": "fractured-mod:pocket_dimension",
+    "generator": {
+        "type": "minecraft:flat",
+        "settings": {
+            "biome": "fractured-mod:pocket_dimension",
+            "lakes": false,
+            "features": false,
+            "layers": [
+                {
+                    "block": "minecraft:air",
+                    "height": 1
+                }
+            ],
+            "structure_overrides": []
+        }
+    }
+}
