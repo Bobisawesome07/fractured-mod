@@ -1,6 +1,7 @@
 package com.fofr.item.custom;
 
 import com.fofr.block.ModBlocks;
+import com.fofr.world.dimension.ModDimensions;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -48,6 +49,7 @@ public class FracturedSwordItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if(!world.isClient()&&!user.getItemCooldownManager().isCoolingDown(this.asItem())) {
             LOGGER.debug("Fractured Sword Event Triggered");
+            ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString());
             HitResult hitResult= user.raycast(10.0,1f,false);
             BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
