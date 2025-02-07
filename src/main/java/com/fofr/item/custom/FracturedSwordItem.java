@@ -2,17 +2,19 @@ package com.fofr.item.custom;
 
 import com.fofr.block.ModBlocks;
 import com.fofr.world.dimension.ModDimensions;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.CommandDispatcher;
-import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -26,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import static com.fofr.FracturedMod.MOD_ID;
+import static com.fofr.FracturedMod.server;
 
 public class FracturedSwordItem extends Item {
     
@@ -52,20 +55,25 @@ public class FracturedSwordItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if(!world.isClient()&&!user.getItemCooldownManager().isCoolingDown(this.asItem())) {
             LOGGER.debug("Fractured Sword Event Triggered");
+
             ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString());
-            world.getServer().getCommandManager().execute()
             HitResult hitResult= user.raycast(10.0,1f,false);
             BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
-            if(hitResult.getType() == HitResult.Type.BLOCK){
-                LOGGER.debug("Raycast successful, attempting to gen portal block");
+            ServerPlayerEntity serverPlayer= (ServerPlayerEntity) user;
+            ServerWorld targetWorld = server.getWorld(RegistryKey.of(
+                    RegistryKeys.WORLD,
+                    new Identifier(
+                            "fractured-mod",
+                            "pocket_dimension"+user.getUuidAsString())));
+            serverPlayer.teleport( targetWorld,0.0,2.0,0.0,0f,0f);
+            LOGGER.debug("Raycast successful, attempting to gen portal block");
                 createPortal(world, blockPos, blockHitResult.getSide());
                 resetCooldown(user, this);
             }
             else{
                 LOGGER.debug("Raycast missed");
             }
-        }
         return super.use(world, user, hand);
     }
 

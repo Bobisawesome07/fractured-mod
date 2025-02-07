@@ -23,8 +23,8 @@ public class ModDimensions {
 
     public static final RegistryKey<DimensionType> POCKET_DIM_TYPE = RegistryKey.of(RegistryKeys.DIMENSION_TYPE,
           new Identifier(MOD_ID, "pocket_dimension"));
-    Fantasy fantasy = Fantasy.get(FracturedMod.getServer());
-    RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
+    static Fantasy fantasy = Fantasy.get(FracturedMod.getServer());
+    static RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
             .setDimensionType(ModDimensions.POCKET_DIM_TYPE)
             .setDifficulty(Difficulty.HARD)
             .setGameRule(GameRules.DO_DAYLIGHT_CYCLE, false)

@@ -13,7 +13,7 @@ public class FracturedMod implements ModInitializer {
 
 	public static final String MOD_ID = "fractured-mod";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-	private static MinecraftServer server;
+	public static MinecraftServer server;
 
 	@Override
 	public void onInitialize() {
