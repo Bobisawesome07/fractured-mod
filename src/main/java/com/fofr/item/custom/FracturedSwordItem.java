@@ -2,6 +2,9 @@ package com.fofr.item.custom;
 
 import com.fofr.block.ModBlocks;
 import com.fofr.world.dimension.ModDimensions;
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
+import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,6 +53,7 @@ public class FracturedSwordItem extends Item {
         if(!world.isClient()&&!user.getItemCooldownManager().isCoolingDown(this.asItem())) {
             LOGGER.debug("Fractured Sword Event Triggered");
             ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString());
+            world.getServer().getCommandManager().execute()
             HitResult hitResult= user.raycast(10.0,1f,false);
             BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
