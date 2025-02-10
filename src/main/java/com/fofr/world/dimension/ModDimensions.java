@@ -1,16 +1,18 @@
 package com.fofr.world.dimension;
 
 import com.fofr.FracturedMod;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BiomeTags;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
+import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 import xyz.nucleoid.fantasy.Fantasy;
@@ -19,8 +21,11 @@ import xyz.nucleoid.fantasy.RuntimeWorldHandle;
 import xyz.nucleoid.fantasy.util.VoidChunkGenerator;
 
 import static com.fofr.FracturedMod.MOD_ID;
+import static com.fofr.FracturedMod.server;
 
+import java.util.Map;
 import java.util.OptionalLong;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ModDimensions {
 
@@ -38,8 +43,21 @@ public class ModDimensions {
             .setGenerator(pocketGen)
             .setSeed(1234L);
 
-    public static void createOrLoadPocketDimension(String nameSpace, String uuid){
-        RuntimeWorldHandle worldHandle = fantasy.getOrOpenPersistentWorld(new Identifier(nameSpace, "pocket_dimension"+uuid), worldConfig);
+    public static void tpToPocket(World world, PlayerEntity user){
+        ServerPlayerEntity serverPlayer= (ServerPlayerEntity) user;
+        ServerWorld targetWorld = server.getWorld(RegistryKey.of(
+                RegistryKeys.WORLD,
+                new Identifier(
+                        "fractured-mod",
+                        "pocket_dimension"+user.getUuidAsString())));
+        serverPlayer.teleport( targetWorld,0.0,2.0,0.0,0f,0f);
+    }
+
+    private static final Map<String, RuntimeWorldHandle> worldCache = new ConcurrentHashMap<>();
+
+    public static RuntimeWorldHandle createOrLoadPocketDimension(String nameSpace, String uuid){
+        String worldId = nameSpace + ":pocket_dimension" + uuid;
+        return worldCache.computeIfAbsent(worldId, id -> fantasy.getOrOpenPersistentWorld(new Identifier(nameSpace, "pocket_dimension" + uuid), worldConfig));
     }
 
     public static void bootstrapType(Registerable<DimensionType> context){

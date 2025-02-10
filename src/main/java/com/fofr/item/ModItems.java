@@ -26,11 +26,6 @@ public class ModItems {
 
     }
 
-
-
-
-
-
     // --------- Helper Methods ------------------------------------------------------------------------------------------------------- //
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, new Identifier(FracturedMod.MOD_ID, name), item);

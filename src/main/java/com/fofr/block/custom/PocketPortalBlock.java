@@ -2,6 +2,7 @@ package com.fofr.block.custom;
 
 import com.fofr.block.entity.PocketPortalBlockEntity;
 import com.fofr.item.custom.FracturedSwordItem;
+import com.fofr.world.dimension.ModDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -31,7 +32,7 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!world.isClient && entity instanceof PlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            FracturedSwordItem.tpToPocket(world, (PlayerEntity) entity);
+            ModDimensions.tpToPocket(world, (PlayerEntity) entity);
         }
     }
 

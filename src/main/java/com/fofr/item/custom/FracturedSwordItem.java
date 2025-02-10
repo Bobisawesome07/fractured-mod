@@ -69,15 +69,6 @@ public class FracturedSwordItem extends Item {
             }
         return super.use(world, user, hand);
     }
-    public static void tpToPocket(World world, PlayerEntity user){
-        ServerPlayerEntity serverPlayer= (ServerPlayerEntity) user;
-        ServerWorld targetWorld = server.getWorld(RegistryKey.of(
-                RegistryKeys.WORLD,
-                new Identifier(
-                        "fractured-mod",
-                        "pocket_dimension"+user.getUuidAsString())));
-        serverPlayer.teleport( targetWorld,0.0,2.0,0.0,0f,0f);
-    }
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable("item.fractured-mod.fractured_sword.tooltip").formatted(Formatting.GOLD).formatted(Formatting.ITALIC).formatted(Formatting.BOLD));
