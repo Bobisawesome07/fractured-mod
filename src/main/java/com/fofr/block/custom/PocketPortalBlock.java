@@ -16,6 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 public class PocketPortalBlock extends Block implements BlockEntityProvider {
 
     public PocketPortalBlock(Settings settings) {
@@ -31,8 +33,15 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!world.isClient && entity instanceof PlayerEntity) {
-            ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ModDimensions.tpToPocket(world, (PlayerEntity) entity);
+            PocketPortalBlockEntity portalEntity = (PocketPortalBlockEntity) world.getBlockEntity(pos);
+            if (portalEntity != null) {
+                UUID portalUuid = portalEntity.getPlayerUuid();
+                UUID entityUuid = entity.getUuid();
+                if (portalUuid.equals(entityUuid)) {
+                    ServerPlayerEntity player = (ServerPlayerEntity) entity;
+                    ModDimensions.tpToPocket(world, player);
+                }
+            }
         }
     }
 

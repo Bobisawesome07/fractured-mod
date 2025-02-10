@@ -1,6 +1,7 @@
 package com.fofr.item.custom;
 
 import com.fofr.block.ModBlocks;
+import com.fofr.block.entity.PocketPortalBlockEntity;
 import com.fofr.world.dimension.ModDimensions;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
@@ -26,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.UUID;
 
 import static com.fofr.FracturedMod.MOD_ID;
 import static com.fofr.FracturedMod.server;
@@ -43,11 +45,14 @@ public class FracturedSwordItem extends Item {
     private boolean isAir(World world, BlockPos blockPos){
         return(world.getBlockState(blockPos).getBlock()==Blocks.AIR||world.getBlockState(blockPos).getBlock()==Blocks.CAVE_AIR);
     }
-    private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace){
+    private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid){
         if (lookedAtFace != null) {
             if (world.getBlockState(blockPos).isAir()) {  // Or other condition
                 LOGGER.debug("Setting portal block at " + blockPos);
                 world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.getDefaultState());
+                if (world.getBlockEntity(blockPos) instanceof PocketPortalBlockEntity portalEntity) {
+                    portalEntity.setPlayerUuid(playerUuid);
+                }
             }
         }
     }
@@ -61,7 +66,7 @@ public class FracturedSwordItem extends Item {
             BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
             LOGGER.debug("Raycast successful, attempting to gen portal block");
-                createPortal(world, blockPos, blockHitResult.getSide());
+                createPortal(world, blockPos, blockHitResult.getSide(), user.getUuid());
                 resetCooldown(user, this);
             }
             else{
