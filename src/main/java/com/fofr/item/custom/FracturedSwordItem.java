@@ -44,7 +44,7 @@ public class FracturedSwordItem extends Item {
     private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid){
         if (lookedAtFace != null) {
             if (world.getBlockState(blockPos).isAir()) {  // Or other condition
-                LOGGER.debug("Setting portal block at " + blockPos);
+                LOGGER.info("Setting portal block at " + blockPos);
                 world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.getDefaultState());
                 if (world.getBlockEntity(blockPos) instanceof PocketPortalBlockEntity portalEntity) {
                     portalEntity.setPlayerUuid(playerUuid);
@@ -56,18 +56,18 @@ public class FracturedSwordItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if(!world.isClient()&&!user.getItemCooldownManager().isCoolingDown(this.asItem())) {
-            LOGGER.debug("Fractured Sword Event Triggered");
+            LOGGER.info("Fractured Sword Event Triggered");
 
             ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString());
             HitResult hitResult= user.raycast(10.0,1f,false);
             BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
-            LOGGER.debug("Raycast successful, attempting to gen portal block");
+            LOGGER.info("Raycast successful, attempting to gen portal block");
                 createPortal(world, blockPos, blockHitResult.getSide(), user.getUuid());
                 resetCooldown(user, this);
             }
             else{
-                LOGGER.debug("Raycast missed");
+                LOGGER.info("Raycast missed");
             }
         return super.use(world, user, hand);
     }
