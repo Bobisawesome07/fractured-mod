@@ -1,7 +1,6 @@
 package com.fofr.block.custom;
 
 import com.fofr.block.entity.PocketPortalBlockEntity;
-import com.fofr.item.custom.FracturedSwordItem;
 import com.fofr.world.dimension.ModDimensions;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -32,11 +31,13 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        // Check if the entity is a player and if the player is the one who created the portal
         if (!world.isClient && entity instanceof PlayerEntity) {
             PocketPortalBlockEntity portalEntity = (PocketPortalBlockEntity) world.getBlockEntity(pos);
             if (portalEntity != null) {
                 UUID portalUuid = portalEntity.getPlayerUuid();
                 UUID entityUuid = entity.getUuid();
+                // If the player who created the portal is the one who entered the portal, teleport them to the pocket dimension
                 if (portalUuid.equals(entityUuid)) {
                     ServerPlayerEntity player = (ServerPlayerEntity) entity;
                     ModDimensions.tpToPocket(world, player);

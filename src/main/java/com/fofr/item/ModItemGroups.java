@@ -15,7 +15,7 @@ public class ModItemGroups {
             new Identifier(FracturedMod.MOD_ID, "fractured_items"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.fractured"))
                     .icon(() -> new ItemStack(ModItems.FRACTURED_SWORD)).entries((displayContext, entries) -> {
-                        // Add items to custom group here:
+                        // Add items to a custom group here:
                         entries.add(ModItems.FRACTURED_SWORD);
                         entries.add(ModItems.FRACTURED_SHARD);
                         entries.add(ModBlocks.FAKE_BEDROCK);

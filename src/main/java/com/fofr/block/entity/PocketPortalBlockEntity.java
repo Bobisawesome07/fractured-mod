@@ -11,13 +11,16 @@ import java.util.UUID;
 
 public class PocketPortalBlockEntity extends BlockEntity {
 
+    // Duration is the number of ticks the block will exist for
     private int duration = 200; // 200 ticks = 10 seconds
+    // Player UUID is the UUID of the player who created the portal
     private UUID playerUuid = UUID.fromString("0983afc7-7d95-48bb-9c46-e7f4dc5b95cc");
 
+    // Constructor
     public PocketPortalBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.POCKET_PORTAL, pos, state);
     }
-
+    // Tick method
     public static void tick(World world, BlockPos pos, BlockState state, PocketPortalBlockEntity blockEntity) {
         if (!world.isClient) {
             blockEntity.duration--;
@@ -27,11 +30,11 @@ public class PocketPortalBlockEntity extends BlockEntity {
             }
         }
     }
-
+    // Set the duration of the block
     public void setPlayerUuid(UUID playerUuid){
         this.playerUuid = playerUuid;
     }
-
+    // Get the player UUID
     public UUID getPlayerUuid(){
         return playerUuid;
     }
