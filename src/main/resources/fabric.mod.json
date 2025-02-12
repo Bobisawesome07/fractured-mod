@@ -17,13 +17,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.fofr.FracturedMod"
+			"io.github.bobisawesome07.FracturedMod"
 		],
 		"client": [
-			"com.fofr.FracturedModClient"
+			"io.github.bobisawesome07.FracturedModClient"
 		],
 		"fabric-datagen": [
-			"com.fofr.FracturedModDataGenerator"
+			"io.github.bobisawesome07.FracturedModDataGenerator"
 		]
 	},
 	"mixins": [

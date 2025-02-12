@@ -3,7 +3,7 @@
 	"package": "com.fofr.mixin.client",
 	"compatibilityLevel": "JAVA_17",
 	"client": [
-		"ExampleClientMixin"
+      "io.github.bobisawesome07.mixin.client.ExampleClientMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
