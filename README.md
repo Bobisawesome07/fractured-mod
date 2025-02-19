@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KICAgIDxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgODAwIDIwMCI+CiAgICAgICAgPGRlZnM+CiAgICAgICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmctZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzQxNThEMDtzdG9wLW9wYWNpdHk6MSIgLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iNTAlIiBzdHlsZT0ic3RvcC1jb2xvcjojQzg1MEMwO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZDQzcwO3N0b3Atb3BhY2l0eToxIiAvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgICAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciPgogICAgICAgICAgICAgICAgPGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjQiIHN0ZERldmlhdGlvbj0iNCIgZmxvb2Qtb3BhY2l0eT0iMC4yNSIgLz4KICAgICAgICAgICAgPC9maWx0ZXI+CiAgICAgICAgPC9kZWZzPgogICAgICAgIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMjAwIiBmaWxsPSJ1cmwoI2JnLWdyYWRpZW50KSIgcng9IjE1IiByeT0iMTUiLz4KICAgICAgICA8dGV4dCB4PSI0MDAiIHk9IjEwMCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjQ4IgogICAgICAgIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIgogICAgICAgIGZpbGw9IiNGRkZGRkYiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj5GUkFDVFVSRUQtTU9EPC90ZXh0PgogICAgPC9zdmc+" alt="fractured-mod-banner" width="800">
+	<img src="data:https://i.ibb.co/pjj4GGbg/Factions-of-the-Fractured-Realm.webp" alt="fractured-mod-banner" width="800">
 </p>
 <p align="center">
 	<em><code>❯ REPLACE-ME</code></em>
@@ -22,14 +22,10 @@
 
 - [📍 Overview](#-overview)
 - [👾 Features](#-features)
-- [📁 Project Structure](#-project-structure)
-  - [📂 Project Index](#-project-index)
+- [📂 Project Index](#-project-index)
 - [🚀 Getting Started](#-getting-started)
   - [☑️ Prerequisites](#-prerequisites)
   - [⚙️ Installation](#-installation)
-  - [🤖 Usage](#🤖-usage)
-  - [🧪 Testing](#🧪-testing)
-- [📌 Project Roadmap](#-project-roadmap)
 - [🔰 Contributing](#-contributing)
 - [🎗 License](#-license)
 - [🙌 Acknowledgments](#-acknowledgments)
@@ -38,35 +34,16 @@
 
 ## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
+Fratured Mod is a Minecraft mod built using the Fabric modding toolchain. This mod aims to enhance the gameplay experience by introducing new features and improvements.
 
 ---
 
 ## 👾 Features
 
-<code>❯ REPLACE-ME</code>
+- **Fake Bedrock Block**: A block that looks like bedrock but has different properties.
+- **Portal Sword**: A sword that can open a portal to a pocket dimension.
 
 ---
-
-## 📁 Project Structure
-
-```sh
-└── fractured-mod/
-    ├── .github
-    │   └── workflows
-    ├── LICENSE
-    ├── build.gradle
-    ├── gradle
-    │   └── wrapper
-    ├── gradle.properties
-    ├── gradlew
-    ├── gradlew.bat
-    ├── settings.gradle
-    └── src
-        ├── client
-        └── main
-```
-
 
 ### 📂 Project Index
 <details open>
@@ -76,16 +53,20 @@
 		<blockquote>
 			<table>
 			<tr>
-				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/gradlew.bat'>gradlew.bat</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/gradlew.bat'>gradlew.bat</a></b></td>
+				<td><code>Windows batch file for building the project.</code></td>
 			</tr>
 			<tr>
-				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/build.gradle'>build.gradle</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/build.gradle'>build.gradle</a></b></td>
+				<td><code>Gradle build script with project dependencies and tasks.</code></td>
 			</tr>
 			<tr>
-				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/settings.gradle'>settings.gradle</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
+				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/settings.gradle'>settings.gradle</a></b></td>
+				<td><code>Settings for the Gradle build.</code></td>
+			</tr>
+			<tr>
+				<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/README.md'>README.md</a></b></td>
+				<td><code>Project README with detailed information.</code></td>
 			</tr>
 			</table>
 		</blockquote>
@@ -98,8 +79,8 @@
 				<blockquote>
 					<table>
 					<tr>
-						<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/.github/workflows/build.yml'>build.yml</a></b></td>
-						<td><code>❯ REPLACE-ME</code></td>
+						<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/.github/workflows/build.yml'>build.yml</a></b></td>
+						<td><code>GitHub Actions workflow for building the project.</code></td>
 					</tr>
 					</table>
 				</blockquote>
@@ -117,12 +98,12 @@
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/main/resources/fractured-mod.mixins.json'>fractured-mod.mixins.json</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
+								<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/main/resources/fractured-mod.mixins.json'>fractured-mod.mixins.json</a></b></td>
+								<td><code>Mixin configuration for the mod.</code></td>
 							</tr>
 							<tr>
-								<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/main/resources/fabric.mod.json'>fabric.mod.json</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
+								<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/main/resources/fabric.mod.json'>fabric.mod.json</a></b></td>
+								<td><code>Fabric mod metadata.</code></td>
 							</tr>
 							</table>
 						</blockquote>
@@ -138,8 +119,8 @@
 										<blockquote>
 											<table>
 											<tr>
-												<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/main/java/com/fofr/FracturedMod.java'>FracturedMod.java</a></b></td>
-												<td><code>❯ REPLACE-ME</code></td>
+												<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/main/java/com/fofr/FracturedMod.java'>FracturedMod.java</a></b></td>
+												<td><code>Main class for the mod.</code></td>
 											</tr>
 											</table>
 											<details>
@@ -147,8 +128,8 @@
 												<blockquote>
 													<table>
 													<tr>
-														<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/main/java/com/fofr/mixin/ExampleMixin.java'>ExampleMixin.java</a></b></td>
-														<td><code>❯ REPLACE-ME</code></td>
+														<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/main/java/com/fofr/mixin/ExampleMixin.java'>ExampleMixin.java</a></b></td>
+														<td><code>Example mixin class for the mod.</code></td>
 													</tr>
 													</table>
 												</blockquote>
@@ -169,8 +150,8 @@
 						<blockquote>
 							<table>
 							<tr>
-								<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/client/resources/fractured-mod.client.mixins.json'>fractured-mod.client.mixins.json</a></b></td>
-								<td><code>❯ REPLACE-ME</code></td>
+								<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/client/resources/fractured-mod.client.mixins.json'>fractured-mod.client.mixins.json</a></b></td>
+								<td><code>Client-side mixin configuration for the mod.</code></td>
 							</tr>
 							</table>
 						</blockquote>
@@ -186,12 +167,12 @@
 										<blockquote>
 											<table>
 											<tr>
-												<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/client/java/com/fofr/FracturedModClient.java'>FracturedModClient.java</a></b></td>
-												<td><code>❯ REPLACE-ME</code></td>
+												<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/client/java/com/fofr/FracturedModClient.java'>FracturedModClient.java</a></b></td>
+												<td><code>Client entry point for the mod.</code></td>
 											</tr>
 											<tr>
-												<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/client/java/com/fofr/FracturedModDataGenerator.java'>FracturedModDataGenerator.java</a></b></td>
-												<td><code>❯ REPLACE-ME</code></td>
+												<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/client/java/com/fofr/FracturedModDataGenerator.java'>FracturedModDataGenerator.java</a></b></td>
+												<td><code>Data generator class for the mod.</code></td>
 											</tr>
 											</table>
 											<details>
@@ -202,8 +183,8 @@
 														<blockquote>
 															<table>
 															<tr>
-																<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/master/src/client/java/com/fofr/mixin/client/ExampleClientMixin.java'>ExampleClientMixin.java</a></b></td>
-																<td><code>❯ REPLACE-ME</code></td>
+																<td><b><a href='https://github.com/Bobisawesome07/fractured-mod/blob/bob/src/client/java/com/fofr/mixin/client/ExampleClientMixin.java'>ExampleClientMixin.java</a></b></td>
+																<td><code>Example client-side mixin class for the mod.</code></td>
 															</tr>
 															</table>
 														</blockquote>
@@ -227,19 +208,18 @@
 
 ### ☑️ Prerequisites
 
-Before getting started with fractured-mod, ensure your runtime environment meets the following requirements:
+Before getting started with Fratured Mod, ensure your runtime environment meets the following requirements:
 
 - **Programming Language:** Java
 - **Package Manager:** Gradle
 
-
 ### ⚙️ Installation
 
-Install fractured-mod using one of the following methods:
+Install Fratured Mod using one of the following methods:
 
 **Build from source:**
 
-1. Clone the fractured-mod repository:
+1. Clone the Fratured Mod repository:
 ```sh
 ❯ git clone https://github.com/Bobisawesome07/fractured-mod
 ```
@@ -252,52 +232,29 @@ Install fractured-mod using one of the following methods:
 3. Install the project dependencies:
 
 
-**Using `gradle`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Gradle-02303A.svg?style={badge_style}&logo=gradle&logoColor=white" />](https://gradle.org/)
+**Using `gradle`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=gradle&logoColor=white" />](https://gradle.org/)
 
 ```sh
 ❯ gradle build
 ```
 
+**Using Fabric:**
 
-
-
-### 🤖 Usage
-Run fractured-mod using the following command:
-**Using `gradle`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Gradle-02303A.svg?style={badge_style}&logo=gradle&logoColor=white" />](https://gradle.org/)
-
-```sh
-❯ gradle run
-```
-
-
-### 🧪 Testing
-Run the test suite using the following command:
-**Using `gradle`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Gradle-02303A.svg?style={badge_style}&logo=gradle&logoColor=white" />](https://gradle.org/)
-
-```sh
-❯ gradle test
-```
-
+1. Ensure you have the Fabric Loader installed. You can download it from [Fabric website](https://fabricmc.net/use/).
+2. Download the latest release of Fratured Mod from the [releases page](https://github.com/Bobisawesome07/fractured-mod/releases).
+3. Place the downloaded `.jar` file into the `mods` folder of your Minecraft directory.
 
 ---
-## 📌 Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
-
 ## 🔰 Contributing
 
 - **💬 [Join the Discussions](https://github.com/Bobisawesome07/fractured-mod/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/Bobisawesome07/fractured-mod/issues)**: Submit bugs found or log feature requests for the `fractured-mod` project.
+- **🐛 [Report Issues](https://github.com/Bobisawesome07/fractured-mod/issues)**: Submit bugs found or log feature requests for the `Fratured Mod` project.
 - **💡 [Submit Pull Requests](https://github.com/Bobisawesome07/fractured-mod/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 
 <details closed>
 <summary>Contributing Guidelines</summary>
 
-1. **Fork the Repository**: Start by forking the project repository to your github account.
+1. **Fork the Repository**: Start by forking the project repository to your GitHub account.
 2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
    git clone https://github.com/Bobisawesome07/fractured-mod
@@ -311,7 +268,7 @@ Run the test suite using the following command:
    ```sh
    git commit -m 'Implemented new feature x.'
    ```
-6. **Push to github**: Push the changes to your forked repository.
+6. **Push to GitHub**: Push the changes to your forked repository.
    ```sh
    git push origin new-feature-x
    ```
@@ -323,7 +280,7 @@ Run the test suite using the following command:
 <summary>Contributor Graph</summary>
 <br>
 <p align="left">
-   <a href="https://github.com{/Bobisawesome07/fractured-mod/}graphs/contributors">
+   <a href="https://github.com/Bobisawesome07/fractured-mod/graphs/contributors">
       <img src="https://contrib.rocks/image?repo=Bobisawesome07/fractured-mod">
    </a>
 </p>
@@ -333,12 +290,12 @@ Run the test suite using the following command:
 
 ## 🎗 License
 
-This project is protected under the [CC0-1.01](https://creativecommons.org/publicdomain/zero/1.0/) License. For more details, refer to the [CC0-1.01](https://github.com/Bobisawesome07/fractured-mod?tab=CC0-1.0-1-ov-file#readme) file.
+This project is licensed under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication. See the [LICENSE](LICENSE) file for more information.
 
 ---
 
 ## 🙌 Acknowledgments
 
-- Thank you to Sir.Duckie for creating most of the models and textures for the mod
+- Thank you to Sir.Duckie for creating most of the models and textures for the mod.
 
----
+```` ▋
