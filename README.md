@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="data:https://i.ibb.co/pjj4GGbg/Factions-of-the-Fractured-Realm.webp" alt="fractured-mod-banner" width="800">
+	<img src="https://i.ibb.co/pjj4GGbg/Factions-of-the-Fractured-Realm.webp" alt="fractured-mod-banner" width="800">
 </p>
 <p align="center">
 	<em><code>❯ REPLACE-ME</code></em>
