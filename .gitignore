@@ -24,6 +24,7 @@ bin/
 .classpath
 .project
 .devcontainer
+.fleet
 
 # macos
 
