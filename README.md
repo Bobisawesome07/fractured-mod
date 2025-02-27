@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://i.ibb.co/gLZjX656/6ecd908e934fc742dbd9b4ca1dae15ae80087e9c-96.webp" alt="fractured-mod-banner">
+    <img src="https://i.ibb.co/d0NpyBtr/logo.png" alt="fractured-mod-banner">
 </p>
 <p align="center">
     <em><code>❯ REPLACE-ME</code></em>
