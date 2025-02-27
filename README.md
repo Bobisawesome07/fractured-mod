@@ -2,7 +2,7 @@
     <img src="https://i.ibb.co/d0NpyBtr/logo.png" alt="fractured-mod-banner">
 </p>
 <p align="center">
-    <em><code>❯ REPLACE-ME</code></em>
+    <em><code>❯ Enhance your Minecraft experience with Fractured Mod, featuring new blocks, items, and dimensions for the Factions of Fractured Realms server.</code></em>
 </p>
 <p align="center">
     <img src="https://img.shields.io/github/license/Bobisawesome07/fractured-mod?style=plastic&logo=opensourceinitiative&logoColor=white&color=0059ff" alt="license">
