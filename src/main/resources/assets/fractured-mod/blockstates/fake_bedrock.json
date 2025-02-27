@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "fractured-mod:block/fake_bedrock" }
+  }
+}
