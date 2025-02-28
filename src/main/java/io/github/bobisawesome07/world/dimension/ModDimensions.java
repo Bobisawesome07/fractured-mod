@@ -1,11 +1,13 @@
 package io.github.bobisawesome07.world.dimension;
 
 import io.github.bobisawesome07.FracturedMod;
+import net.minecraft.client.report.ReporterEnvironment.Server;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -13,11 +15,14 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import xyz.nucleoid.fantasy.Fantasy;
 import xyz.nucleoid.fantasy.RuntimeWorldConfig;
 import xyz.nucleoid.fantasy.RuntimeWorldHandle;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.Map;
 import java.util.OptionalLong;
@@ -30,11 +35,10 @@ public class ModDimensions {
     // Create a new dimension type for the pocket dimension
     public static final RegistryKey<DimensionType> POCKET_DIM_TYPE = RegistryKey.of(RegistryKeys.DIMENSION_TYPE,
           new Identifier(MOD_ID, "pocket_dimension"));
-    static Fantasy fantasy = Fantasy.get(FracturedMod.getServer());
     private static CustomChunkGenerator pocketGen = new CustomChunkGenerator(
             FracturedMod.getServer().getRegistryManager(),
-            FracturedMod.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.THE_END).getValue(),
-            ChunkGeneratorSettings.createSettings()
+            FracturedMod.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.THE_END).orElseThrow().value(),
+            ChunkGeneratorSettings.createDefaultSettings()
     );
     // Create a runtime world configuration for the pocket dimension
     static RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
@@ -57,7 +61,8 @@ public class ModDimensions {
     // Cache the pocket dimension
     private static final Map<String, RuntimeWorldHandle> worldCache = new ConcurrentHashMap<>();
     // Create or load the pocket dimension
-    public static RuntimeWorldHandle createOrLoadPocketDimension(String nameSpace, String uuid){
+    public static RuntimeWorldHandle createOrLoadPocketDimension(String nameSpace, String uuid, MinecraftServer server){
+        Fantasy fantasy = Fantasy.get(server);
         String worldId = nameSpace + ":pocket_dimension" + uuid;
         return worldCache.computeIfAbsent(worldId, id -> fantasy.getOrOpenPersistentWorld(new Identifier(nameSpace, "pocket_dimension" + uuid), worldConfig));
     }

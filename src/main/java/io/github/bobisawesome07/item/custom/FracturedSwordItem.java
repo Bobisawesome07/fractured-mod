@@ -58,7 +58,7 @@ public class FracturedSwordItem extends Item {
         if(!world.isClient()&&!user.getItemCooldownManager().isCoolingDown(this.asItem())) {
             LOGGER.info("Fractured Sword Event Triggered");
 
-            ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString());
+            ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString(),user.getServer());
             HitResult hitResult= user.raycast(10.0,1f,false);
             BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
