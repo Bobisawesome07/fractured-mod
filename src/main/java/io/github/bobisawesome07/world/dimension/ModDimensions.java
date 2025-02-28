@@ -1,6 +1,7 @@
 package io.github.bobisawesome07.world.dimension;
 
 import io.github.bobisawesome07.FracturedMod;
+import io.github.bobisawesome07.world.BarrierFloorChunkGenerator;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -13,6 +14,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 import xyz.nucleoid.fantasy.Fantasy;
@@ -32,10 +34,12 @@ public class ModDimensions {
     public static final RegistryKey<DimensionType> POCKET_DIM_TYPE = RegistryKey.of(RegistryKeys.DIMENSION_TYPE,
           new Identifier(MOD_ID, "pocket_dimension"));
     static Fantasy fantasy = Fantasy.get(FracturedMod.getServer());
-    private static VoidChunkGenerator pocketGen = new VoidChunkGenerator(
-            FracturedMod.getServer().getRegistryManager().get(RegistryKeys.BIOME),
-            RegistryKey.of(RegistryKeys.BIOME, new Identifier("minecraft", "the_end"))
-    );
+    
+    private static final BarrierFloorChunkGenerator pocketGen = new BarrierFloorChunkGenerator(
+    FracturedMod.getServer().getRegistryManager()
+        .get(RegistryKeys.BIOME)
+        .entryOf(BiomeKeys.THE_END)
+);
     // Create a runtime world configuration for the pocket dimension
     static RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
             .setDimensionType(ModDimensions.POCKET_DIM_TYPE)
