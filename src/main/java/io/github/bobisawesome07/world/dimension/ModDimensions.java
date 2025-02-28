@@ -18,23 +18,23 @@ import net.minecraft.world.dimension.DimensionTypes;
 import xyz.nucleoid.fantasy.Fantasy;
 import xyz.nucleoid.fantasy.RuntimeWorldConfig;
 import xyz.nucleoid.fantasy.RuntimeWorldHandle;
-import xyz.nucleoid.fantasy.util.VoidChunkGenerator;
-
-import static io.github.bobisawesome07.FracturedMod.MOD_ID;
-import static io.github.bobisawesome07.FracturedMod.server;
 
 import java.util.Map;
 import java.util.OptionalLong;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static io.github.bobisawesome07.FracturedMod.MOD_ID;
+import static io.github.bobisawesome07.FracturedMod.server;
 
 public class ModDimensions {
     // Create a new dimension type for the pocket dimension
     public static final RegistryKey<DimensionType> POCKET_DIM_TYPE = RegistryKey.of(RegistryKeys.DIMENSION_TYPE,
           new Identifier(MOD_ID, "pocket_dimension"));
     static Fantasy fantasy = Fantasy.get(FracturedMod.getServer());
-    private static VoidChunkGenerator pocketGen = new VoidChunkGenerator(
-            FracturedMod.getServer().getRegistryManager().get(RegistryKeys.BIOME),
-            RegistryKey.of(RegistryKeys.BIOME, new Identifier("minecraft", "the_end"))
+    private static CustomChunkGenerator pocketGen = new CustomChunkGenerator(
+            FracturedMod.getServer().getRegistryManager(),
+            FracturedMod.getServer().getRegistryManager().get(RegistryKeys.BIOME).getEntry(BiomeKeys.THE_END).getValue(),
+            ChunkGeneratorSettings.createSettings()
     );
     // Create a runtime world configuration for the pocket dimension
     static RuntimeWorldConfig worldConfig = new RuntimeWorldConfig()
@@ -43,6 +43,7 @@ public class ModDimensions {
             .setGameRule(GameRules.DO_DAYLIGHT_CYCLE, false)
             .setGenerator(pocketGen)
             .setSeed(1234L);
+    
     // Teleport the player to the pocket dimension
     public static void tpToPocket(World world, PlayerEntity user){
         ServerPlayerEntity serverPlayer= (ServerPlayerEntity) user;
@@ -51,7 +52,7 @@ public class ModDimensions {
                 new Identifier(
                         "fractured-mod",
                         "pocket_dimension"+user.getUuidAsString())));
-        serverPlayer.teleport( targetWorld,0.0,2.0,0.0,0f,0f);
+        serverPlayer.teleport(targetWorld, 0.0, 2.0, 0.0, 0f, 0f);
     }
     // Cache the pocket dimension
     private static final Map<String, RuntimeWorldHandle> worldCache = new ConcurrentHashMap<>();
@@ -60,6 +61,7 @@ public class ModDimensions {
         String worldId = nameSpace + ":pocket_dimension" + uuid;
         return worldCache.computeIfAbsent(worldId, id -> fantasy.getOrOpenPersistentWorld(new Identifier(nameSpace, "pocket_dimension" + uuid), worldConfig));
     }
+
     // Bootstrap the pocket dimension type
     public static void bootstrapType(Registerable<DimensionType> context){
         context.register(POCKET_DIM_TYPE, new DimensionType(
@@ -79,5 +81,4 @@ public class ModDimensions {
                 1.0f,
                 new DimensionType.MonsterSettings(false,false, UniformIntProvider.create(0,0),0)));
     }
-
 }
