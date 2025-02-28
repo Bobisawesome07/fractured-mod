@@ -23,6 +23,7 @@ classes/
 bin/
 .classpath
 .project
+.devcontainer
 
 # macos
 
@@ -38,3 +39,6 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+#fleet
+.fleet
