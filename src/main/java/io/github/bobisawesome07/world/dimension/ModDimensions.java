@@ -45,7 +45,7 @@ public class ModDimensions {
     private static final BarrierFloorChunkGenerator pocketGen = new BarrierFloorChunkGenerator(
             FracturedMod.getServer().getRegistryManager()
                 .get(RegistryKeys.BIOME)
-                .entryOf(BiomeKeys.THE_END)
+                .entryOf(BiomeKeys.BEACH)
     );
     
     // Configuration for pocket dimensions
@@ -110,7 +110,7 @@ public class ModDimensions {
                 256,                 // Height
                 256,                 // Logical height
                 BlockTags.INFINIBURN_OVERWORLD,
-                DimensionTypes.THE_END_ID,
+                DimensionTypes.OVERWORLD_ID,
                 1.0f,
                 new DimensionType.MonsterSettings(false, false, UniformIntProvider.create(0, 0), 0)
         ));
