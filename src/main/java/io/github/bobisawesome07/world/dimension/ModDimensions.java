@@ -2,7 +2,6 @@ package io.github.bobisawesome07.world.dimension;
 
 import io.github.bobisawesome07.FracturedMod;
 import io.github.bobisawesome07.world.BarrierFloorChunkGenerator;
-import net.minecraft.client.report.ReporterEnvironment.Server;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
