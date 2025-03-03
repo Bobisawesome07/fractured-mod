@@ -29,10 +29,10 @@ import static io.github.bobisawesome07.FracturedMod.MOD_ID;
 public class FracturedSwordItem extends Item {
     /** Logger for this class */
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    
+
     /** Maximum raycast distance for portal placement */
     private static final float RAYCAST_DISTANCE = 10.0f;
-    
+
     /** Cooldown in ticks after using the sword (150 seconds) */
     private static final int COOLDOWN_TICKS = 3000;
 
@@ -51,8 +51,8 @@ public class FracturedSwordItem extends Item {
      * Checks if the block at the given position is air
      */
     private boolean isAir(World world, BlockPos blockPos) {
-        return world.getBlockState(blockPos).getBlock() == Blocks.AIR || 
-               world.getBlockState(blockPos).getBlock() == Blocks.CAVE_AIR;
+        return world.getBlockState(blockPos).getBlock() == Blocks.AIR ||
+                world.getBlockState(blockPos).getBlock() == Blocks.CAVE_AIR;
     }
 
     /**
@@ -62,10 +62,10 @@ public class FracturedSwordItem extends Item {
         if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()) {
             return;
         }
-        
+
         LOGGER.info("Setting portal block at " + blockPos);
         world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.getDefaultState());
-        
+
         if (world.getBlockEntity(blockPos) instanceof PocketPortalBlockEntity portalEntity) {
             portalEntity.setPlayerUuid(playerUuid);
         }
@@ -81,21 +81,21 @@ public class FracturedSwordItem extends Item {
 
         // Create or load the player's pocket dimension
         ModDimensions.createOrLoadPocketDimension(MOD_ID, user.getUuidAsString());
-        
+
         // Perform raycast to find where to place portal
         HitResult hitResult = user.raycast(RAYCAST_DISTANCE, 1f, false);
-        
+
         if (hitResult.getType() == HitResult.Type.BLOCK) {
             BlockHitResult blockHitResult = (BlockHitResult) hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
-            
+
             LOGGER.info("Raycast successful, attempting to generate portal block");
             createPortal(world, blockPos, blockHitResult.getSide(), user.getUuid());
             applyCooldown(user, this);
         } else {
             LOGGER.info("Raycast missed or hit non-block target");
         }
-        
+
         return super.use(world, user, hand);
     }
 
