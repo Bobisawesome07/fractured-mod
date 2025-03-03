@@ -76,7 +76,6 @@ public class FracturedSwordItem extends Item {
         if (world.isClient || user.getItemCooldownManager().isCoolingDown(this.asItem())) {
             return super.use(world, user, hand);
         }
-
         LOGGER.info("Fractured Sword Event Triggered");
 
         // Create or load the player's pocket dimension

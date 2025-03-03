@@ -2,11 +2,13 @@ package io.github.bobisawesome07.world.dimension;
 
 import io.github.bobisawesome07.FracturedMod;
 import io.github.bobisawesome07.world.BarrierFloorChunkGenerator;
+import net.minecraft.client.report.ReporterEnvironment.Server;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -17,9 +19,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings;
 import xyz.nucleoid.fantasy.Fantasy;
 import xyz.nucleoid.fantasy.RuntimeWorldConfig;
 import xyz.nucleoid.fantasy.RuntimeWorldHandle;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.Map;
 import java.util.OptionalLong;
@@ -82,6 +86,7 @@ public class ModDimensions {
      * @return Handle to the runtime world
      */
     public static RuntimeWorldHandle createOrLoadPocketDimension(String nameSpace, String uuid) {
+
         String worldId = nameSpace + ":pocket_dimension" + uuid;
         return worldCache.computeIfAbsent(worldId, id -> 
             fantasy.getOrOpenPersistentWorld(
@@ -90,7 +95,6 @@ public class ModDimensions {
             )
         );
     }
-
     /**
      * Registers the pocket dimension type during game bootstrap
      * 
