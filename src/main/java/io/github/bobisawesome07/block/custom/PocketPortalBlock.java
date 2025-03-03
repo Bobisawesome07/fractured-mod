@@ -29,44 +29,31 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
         return new PocketPortalBlockEntity(pos, state);
     }
 
-    /**
-     * Handles entity collision with the portal block.
-     * If the colliding entity is the player who created this portal,
-     * they will be teleported to their pocket dimension.
-     */
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (world.isClient || !(entity instanceof PlayerEntity)) {
-            return;
-        }
-        
-        // Get portal entity and check player ownership
-        PocketPortalBlockEntity portalEntity = (PocketPortalBlockEntity) world.getBlockEntity(pos);
-        if (portalEntity == null) {
-            return;
-        }
-        
-        UUID portalUuid = portalEntity.getPlayerUuid();
-        UUID entityUuid = entity.getUuid();
-        
-        // Teleport only if this player created the portal
-        if (portalUuid.equals(entityUuid)) {
-            ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ModDimensions.tpToPocket(world, player);
+        // Check if the entity is a player and if the player is the one who created the portal
+        if (!world.isClient && entity instanceof PlayerEntity) {
+            PocketPortalBlockEntity portalEntity = (PocketPortalBlockEntity) world.getBlockEntity(pos);
+            if (portalEntity != null) {
+                UUID portalUuid = portalEntity.getPlayerUuid();
+                UUID entityUuid = entity.getUuid();
+                // If the player who created the portal is the one who entered the portal, teleport them to the pocket dimension
+                if (portalUuid.equals(entityUuid)) {
+                    ServerPlayerEntity player = (ServerPlayerEntity) entity;
+                    ModDimensions.tpToPocket(world, player);
+                }
+            }
         }
     }
 
-    /**
-     * Returns the ticker for handling the portal's time-based behavior
-     */
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : 
-            (world1, pos, state1, blockEntity) -> {
-                if (blockEntity instanceof PocketPortalBlockEntity portal) {
-                    PocketPortalBlockEntity.tick(world1, pos, state1, portal);
-                }
-            };
+        return world.isClient ? null : (world1, pos, state1, blockEntity) -> {
+            if (blockEntity instanceof PocketPortalBlockEntity portal) {
+                PocketPortalBlockEntity.tick(world1, pos, state1, portal);
+                
+            }
+        };
     }
 }

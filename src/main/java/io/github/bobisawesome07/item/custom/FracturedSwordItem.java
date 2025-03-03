@@ -27,82 +27,54 @@ import java.util.UUID;
 import static io.github.bobisawesome07.FracturedMod.MOD_ID;
 
 public class FracturedSwordItem extends Item {
-    /** Logger for this class */
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-    /** Maximum raycast distance for portal placement */
-    private static final float RAYCAST_DISTANCE = 10.0f;
-
-    /** Cooldown in ticks after using the sword (150 seconds) */
-    private static final int COOLDOWN_TICKS = 3000;
-
+    // Reset the cooldown of the item
+    private void resetCooldown(PlayerEntity user, Item sword){
+        user.getItemCooldownManager().set(sword, 3000);
+    }
     public FracturedSwordItem(Settings settings) {
         super(settings);
     }
-
-    /**
-     * Applies a cooldown to the sword after use
-     */
-    private void applyCooldown(PlayerEntity user, Item sword) {
-        user.getItemCooldownManager().set(sword, COOLDOWN_TICKS);
+    // Initialize logger
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    // Check if the block at the given position is air
+    private boolean isAir(World world, BlockPos blockPos){
+        return(world.getBlockState(blockPos).getBlock()==Blocks.AIR||world.getBlockState(blockPos).getBlock()==Blocks.CAVE_AIR);
     }
-
-    /**
-     * Checks if the block at the given position is air
-     */
-    private boolean isAir(World world, BlockPos blockPos) {
-        return world.getBlockState(blockPos).getBlock() == Blocks.AIR ||
-                world.getBlockState(blockPos).getBlock() == Blocks.CAVE_AIR;
-    }
-
-    /**
-     * Creates a portal block at the given position
-     */
-    private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid) {
-        if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()) {
-            return;
-        }
-
-        LOGGER.info("Setting portal block at " + blockPos);
-        world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.getDefaultState());
-
-        if (world.getBlockEntity(blockPos) instanceof PocketPortalBlockEntity portalEntity) {
-            portalEntity.setPlayerUuid(playerUuid);
+    // Create a portal block at the given position
+    private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid){
+        if (lookedAtFace != null) {
+            if (world.getBlockState(blockPos).isAir()) {  // Or other condition
+                LOGGER.info("Setting portal block at " + blockPos);
+                world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.getDefaultState());
+                if (world.getBlockEntity(blockPos) instanceof PocketPortalBlockEntity portalEntity) {
+                    portalEntity.setPlayerUuid(playerUuid);
+                }
+            }
         }
     }
-
+    // Override the use method to create a portal block when the item is used
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (world.isClient || user.getItemCooldownManager().isCoolingDown(this.asItem())) {
-            return super.use(world, user, hand);
-        }
+        if(!world.isClient()&&!user.getItemCooldownManager().isCoolingDown(this.asItem())) {
+            LOGGER.info("Fractured Sword Event Triggered");
 
-        LOGGER.info("Fractured Sword Event Triggered");
-
-        // Create or load the player's pocket dimension
-        ModDimensions.createOrLoadPocketDimension(MOD_ID, user.getUuidAsString());
-
-        // Perform raycast to find where to place portal
-        HitResult hitResult = user.raycast(RAYCAST_DISTANCE, 1f, false);
-
-        if (hitResult.getType() == HitResult.Type.BLOCK) {
-            BlockHitResult blockHitResult = (BlockHitResult) hitResult;
+            ModDimensions.createOrLoadPocketDimension("fractured-mod", user.getUuidAsString(),user.getServer());
+            HitResult hitResult= user.raycast(10.0,1f,false);
+            BlockHitResult blockHitResult=(BlockHitResult)hitResult;
             BlockPos blockPos = BlockPos.ofFloored(hitResult.getPos());
-
-            LOGGER.info("Raycast successful, attempting to generate portal block");
-            createPortal(world, blockPos, blockHitResult.getSide(), user.getUuid());
-            applyCooldown(user, this);
-        } else {
-            LOGGER.info("Raycast missed or hit non-block target");
-        }
-
+            LOGGER.info("Raycast successful, attempting to gen portal block");
+                createPortal(world, blockPos, blockHitResult.getSide(), user.getUuid());
+                resetCooldown(user, this);
+            }
+            else{
+                LOGGER.info("Raycast missed");
+            }
         return super.use(world, user, hand);
     }
-
+    // Add tooltip to the item
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.fractured-mod.fractured_sword.tooltip")
-                .formatted(Formatting.GOLD, Formatting.ITALIC, Formatting.BOLD));
+        tooltip.add(Text.translatable("item.fractured-mod.fractured_sword.tooltip").formatted(Formatting.GOLD).formatted(Formatting.ITALIC).formatted(Formatting.BOLD));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }
