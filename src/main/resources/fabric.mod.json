@@ -26,6 +26,13 @@
 			"io.github.bobisawesome07.FracturedModDataGenerator"
 		]
 	},
+	"mixins": [
+		"fractured-mod.mixins.json",
+		{
+			"config": "fractured-mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.20.1",

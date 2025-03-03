@@ -91,7 +91,7 @@ public class BarrierFloorChunkGenerator extends ChunkGenerator {
     
     @Override
     public int getWorldHeight() {
-        return 256; // or whatever you like
+        return 384; // or whatever you like
     }
     
     @Override
@@ -113,37 +113,38 @@ public class BarrierFloorChunkGenerator extends ChunkGenerator {
     @Override
     protected Codec<? extends ChunkGenerator> getCodec() {
         // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("Unimplemented method 'getCodec'");
     }
 
     @Override
     public CompletableFuture<Chunk> populateNoise(Executor executor, Blender blender, NoiseConfig noiseConfig,
             StructureAccessor structureAccessor, Chunk chunk) {
         // TODO Auto-generated method stub
-        return CompletableFuture.completedFuture(chunk);
+        throw new UnsupportedOperationException("Unimplemented method 'populateNoise'");
     }
 
     @Override
     public int getMinimumY() {
         // TODO Auto-generated method stub
-        return 0;
+        throw new UnsupportedOperationException("Unimplemented method 'getMinimumY'");
     }
 
     @Override
     public int getHeight(int x, int z, Type heightmap, HeightLimitView world, NoiseConfig noiseConfig) {
         // TODO Auto-generated method stub
-        return 0;
+        throw new UnsupportedOperationException("Unimplemented method 'getHeight'");
     }
 
     @Override
     public VerticalBlockSample getColumnSample(int x, int z, HeightLimitView world, NoiseConfig noiseConfig) {
         // TODO Auto-generated method stub
-        return new VerticalBlockSample(0, new net.minecraft.block.BlockState[0]);
+        throw new UnsupportedOperationException("Unimplemented method 'getColumnSample'");
     }
 
     @Override
     public void getDebugHudText(List<String> text, NoiseConfig noiseConfig, BlockPos pos) {
         // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDebugHudText'");
     }
 }
     
