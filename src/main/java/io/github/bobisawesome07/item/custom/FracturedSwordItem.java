@@ -35,8 +35,8 @@ public class FracturedSwordItem extends SwordItem {
     /** Maximum raycast distance for portal placement */
     private static final float RAYCAST_DISTANCE = 10.0f;
     
-    /** Cooldown in ticks after using the sword (150 seconds) */
-    private static final int COOLDOWN_TICKS = 3000;
+    /** Cooldown in ticks after using the sword (300 seconds) */
+    private static final int COOLDOWN_TICKS = 6000;
 
     public FracturedSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -50,18 +50,10 @@ public class FracturedSwordItem extends SwordItem {
     }
 
     /**
-     * Checks if the block at the given position is air
-     */
-    private boolean isAir(World world, BlockPos blockPos) {
-        return world.getBlockState(blockPos).getBlock() == Blocks.AIR || 
-               world.getBlockState(blockPos).getBlock() == Blocks.CAVE_AIR;
-    }
-
-    /**
      * Creates a portal block at the given position
      */
     private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid) {
-        if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()) {
+        if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()||!world.getBlockState(blockPos).isReplaceable()) {
             return;
         }
         
