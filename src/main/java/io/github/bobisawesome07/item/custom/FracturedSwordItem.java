@@ -20,13 +20,15 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 
 import java.util.List;
 import java.util.UUID;
 
 import static io.github.bobisawesome07.FracturedMod.MOD_ID;
 
-public class FracturedSwordItem extends Item {
+public class FracturedSwordItem extends SwordItem {
     /** Logger for this class */
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     
@@ -36,8 +38,8 @@ public class FracturedSwordItem extends Item {
     /** Cooldown in ticks after using the sword (150 seconds) */
     private static final int COOLDOWN_TICKS = 3000;
 
-    public FracturedSwordItem(Settings settings) {
-        super(settings);
+    public FracturedSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
     }
 
     /**
