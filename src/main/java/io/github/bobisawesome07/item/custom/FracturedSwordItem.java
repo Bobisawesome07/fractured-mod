@@ -53,6 +53,7 @@ public class FracturedSwordItem extends SwordItem {
      * Creates a portal block at the given position
      */
     private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid) {
+        PlayerEntity player = world.getPlayerByUuid(playerUuid);
         if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()||!world.getBlockState(blockPos).isReplaceable()) {
             return;
         }
