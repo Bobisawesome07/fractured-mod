@@ -19,6 +19,18 @@ repositories {
 		name "KosmX's maven"
 		url 'https://maven.kosmx.dev/'
 	}
+	maven {
+        name = "Jitpack"
+        url = "https://jitpack.io"
+    }
+	maven {
+        name = "ladysnakeUnreleases"
+        url = 'https://maven.ladysnake.org/releases'
+    }
+	maven{
+		name = "ladysnakeReleases"
+		url = "https://maven.ladysnake.org/#/releases/"
+	}
 	maven { url = 'https://maven.nucleoid.xyz/' }
 }
 	// Add repositories to retrieve artifacts from in here.
@@ -54,6 +66,26 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation 'xyz.nucleoid:fantasy:0.4.11+1.20-rc1'
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-block:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-chunk:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-scoreboard:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-world:${project.cca_version}"
+    // Copy the following only if you want to bundle Cardinal Components API as a Jar-in-Jar dependency
+    // (otherwise, you should configure the dependency on Modrinth/Curseforge)
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
+    include "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-block:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-chunk:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-scoreboard:${project.cca_version}"
+	include "dev.onyxstudios.cardinal-components-api:cardinal-components-world:${project.cca_version}"
 }
 
 processResources {
@@ -104,7 +136,7 @@ publishing {
 modrinth {
     token = System.getenv("MODRINTH_TOKEN") // Remember to have the MODRINTH_TOKEN environment variable set or else this will fail - just make sure it stays private!
     projectId = "fractured-mod" // This can be the project ID or the slug. Either will work!
-    versionNumber = "1.0.0" // You don't need to set this manually. Will fail if Modrinth has this version already
+    versionNumber = "1.2.0" // You don't need to set this manually. Will fail if Modrinth has this version already
     versionType = "beta" // This is the default -- can also be `beta` or `alpha`
     uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
     gameVersions = ["1.20.1"] // Must be an array, even with only one version

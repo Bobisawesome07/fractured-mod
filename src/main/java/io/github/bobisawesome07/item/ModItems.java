@@ -10,13 +10,17 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.item.ToolMaterials;
 
 public class ModItems {
     /**
      * Tools and Weapons
      */
-    public static final Item FRACTURED_SWORD = registerItem("fractured_sword", 
-            new FracturedSwordItem(new FabricItemSettings().maxCount(1)));
+    public static final Item FRACTURED_SWORD = new FracturedSwordItem(
+            ToolMaterials.NETHERITE, // uses netherite stats
+            8, // attack damage modifier, adjust as needed
+            -2.4f, // attack speed modifier, adjust as needed
+            new FabricItemSettings().maxCount(1).fireproof());
     
     /**
      * Materials and Resources

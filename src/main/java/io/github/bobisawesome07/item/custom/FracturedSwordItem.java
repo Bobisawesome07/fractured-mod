@@ -20,24 +20,26 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import net.minecraft.item.SwordItem;
+import net.minecraft.item.ToolMaterial;
 
 import java.util.List;
 import java.util.UUID;
 
 import static io.github.bobisawesome07.FracturedMod.MOD_ID;
 
-public class FracturedSwordItem extends Item {
+public class FracturedSwordItem extends SwordItem {
     /** Logger for this class */
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     
     /** Maximum raycast distance for portal placement */
     private static final float RAYCAST_DISTANCE = 10.0f;
     
-    /** Cooldown in ticks after using the sword (150 seconds) */
-    private static final int COOLDOWN_TICKS = 3000;
+    /** Cooldown in ticks after using the sword (300 seconds) */
+    private static final int COOLDOWN_TICKS = 6000;
 
-    public FracturedSwordItem(Settings settings) {
-        super(settings);
+    public FracturedSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
     }
 
     /**
@@ -48,18 +50,11 @@ public class FracturedSwordItem extends Item {
     }
 
     /**
-     * Checks if the block at the given position is air
-     */
-    private boolean isAir(World world, BlockPos blockPos) {
-        return world.getBlockState(blockPos).getBlock() == Blocks.AIR || 
-               world.getBlockState(blockPos).getBlock() == Blocks.CAVE_AIR;
-    }
-
-    /**
      * Creates a portal block at the given position
      */
     private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid) {
-        if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()) {
+        PlayerEntity player = world.getPlayerByUuid(playerUuid);
+        if (lookedAtFace == null || !world.getBlockState(blockPos).isAir()||!world.getBlockState(blockPos).isReplaceable()) {
             return;
         }
         
