@@ -38,19 +38,43 @@ public class FracturedSwordItem extends SwordItem {
     /** Cooldown in ticks after using the sword (300 seconds) */
     private static final int COOLDOWN_TICKS = 6000;
 
+    /**
+     * Constructs a new FracturedSwordItem with the specified tool material, attack damage, attack speed, and settings.
+     *
+     * This constructor initializes the custom sword item, configuring its combat and durability attributes
+     * by passing the provided values to the superclass constructor.
+     *
+     * @param material the tool material defining the sword's durability and properties
+     * @param attackDamage the base damage the sword inflicts
+     * @param attackSpeed the modifier for the sword's attack speed
+     * @param settings the item configuration settings
+     */
     public FracturedSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
 
     /**
-     * Applies a cooldown to the sword after use
+     * Applies a cooldown period to the given sword, preventing its immediate reuse by the player.
+     *
+     * @param user  the player using the sword.
+     * @param sword the sword item to which the cooldown is applied.
      */
     private void applyCooldown(PlayerEntity user, Item sword) {
         user.getItemCooldownManager().set(sword, COOLDOWN_TICKS);
     }
 
     /**
-     * Creates a portal block at the given position
+     * Attempts to create a pocket portal at the specified block position.
+     * 
+     * <p>This method verifies that the target conditions for portal creation are met before proceeding:
+     * it checks that the direction the player looked at is not null and that the block at the given position
+     * is both air and replaceable. If these conditions are satisfied, the block state is updated to a pocket portal,
+     * and the portal block entity (if applicable) is associated with the player's UUID.</p>
+     *
+     * @param world the game world where the portal should be created
+     * @param blockPos the target position for portal creation
+     * @param lookedAtFace the face of the block that was targeted (must be non-null)
+     * @param playerUuid the unique identifier of the player associated with the portal
      */
     private void createPortal(World world, BlockPos blockPos, Direction lookedAtFace, UUID playerUuid) {
         PlayerEntity player = world.getPlayerByUuid(playerUuid);
