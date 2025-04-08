@@ -42,10 +42,11 @@ class FracturedSwordItem(material: ToolMaterial, attackDamage: Int, attackSpeed:
         }
 
         LOGGER.info("Setting portal block at $blockPos")
-        world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL.defaultState)
+        world.setBlockState(blockPos, ModBlocks.POCKET_PORTAL!!.defaultState)
 
-        if (world.getBlockEntity(blockPos) is PocketPortalBlockEntity) {
-            portalEntity.setPlayerUuid(playerUuid)
+        val blockEntity = world.getBlockEntity(blockPos)
+        if (blockEntity is PocketPortalBlockEntity) {
+            blockEntity.playerUuid = playerUuid
         }
     }
 

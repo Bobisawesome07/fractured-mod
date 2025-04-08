@@ -62,6 +62,6 @@ object ModItems {
 
         // Register items to creative tabs
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS)
-            .register(ModifyEntries { obj: FabricItemGroupEntries? -> addToIngredientsTab() })
+            .register(ModifyEntries { entries -> addToIngredientsTab(entries) })
     }
 }
