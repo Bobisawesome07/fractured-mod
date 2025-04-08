@@ -95,7 +95,7 @@ object ModDimensions {
      *
      * @param context Registry context
      */
-    fun bootstrapType(context: Registerable<DimensionType>) {
+    fun bootstrapType(context: Registerable<DimensionType?>?) {
         context.register(
             POCKET_DIM_TYPE, DimensionType(
                 OptionalLong.of(0),  // Fixed time
