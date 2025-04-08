@@ -1,23 +1,24 @@
-package io.github.bobisawesome07.item;
+package io.github.bobisawesome07.item
 
-import net.minecraft.block.Block;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.Block
+import net.minecraft.client.item.TooltipContext
+import net.minecraft.item.ItemStack
+import net.minecraft.text.Text
+import net.minecraft.util.Formatting
+import net.minecraft.world.BlockView
 
-import java.util.List;
-
-public class FracturedBlock extends Block {
-    public FracturedBlock(Settings settings) {
-        super(settings);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        tooltip.add(Text.translatable("item.fractured-mod.general.tooltip_1").formatted(Formatting.BLUE).formatted(Formatting.ITALIC));
-        super.appendTooltip(stack, world, tooltip, options);
+class FracturedBlock(settings: Settings) : Block(settings) {
+    override fun appendTooltip(
+        stack: ItemStack,
+        world: BlockView?,
+        tooltip: MutableList<Text>,
+        options: TooltipContext
+    ) {
+        tooltip.add(
+            Text.translatable("item.fractured-mod.general.tooltip_1").formatted(Formatting.BLUE).formatted(
+                Formatting.ITALIC
+            )
+        )
+        super.appendTooltip(stack, world, tooltip, options)
     }
 }

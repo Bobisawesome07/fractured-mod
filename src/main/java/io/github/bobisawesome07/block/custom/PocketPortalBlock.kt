@@ -1,32 +1,24 @@
-package io.github.bobisawesome07.block.custom;
+package io.github.bobisawesome07.block.custom
 
-import io.github.bobisawesome07.block.entity.PocketPortalBlockEntity;
-import io.github.bobisawesome07.world.dimension.ModDimensions;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import io.github.bobisawesome07.block.ModBlockEntities
+import io.github.bobisawesome07.block.entity.PocketPortalBlockEntity
+import io.github.bobisawesome07.block.entity.PocketPortalBlockEntity.Companion.tick
+import io.github.bobisawesome07.world.dimension.ModDimensions.tpToPocket
+import net.minecraft.block.Block
+import net.minecraft.block.BlockEntityProvider
+import net.minecraft.block.BlockState
+import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
+import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.entity.Entity
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
 
-import java.util.UUID;
-
-public class PocketPortalBlock extends Block implements BlockEntityProvider {
-
-    public PocketPortalBlock(Settings settings) {
-        super(settings);
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new PocketPortalBlockEntity(pos, state);
+class PocketPortalBlock(settings: Settings) : Block(settings), BlockEntityProvider {
+    override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity? {
+        return PocketPortalBlockEntity(pos, state)
     }
 
     /**
@@ -34,39 +26,46 @@ public class PocketPortalBlock extends Block implements BlockEntityProvider {
      * If the colliding entity is the player who created this portal,
      * they will be teleported to their pocket dimension.
      */
-    @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (world.isClient || !(entity instanceof PlayerEntity)) {
-            return;
+    @Deprecated("Deprecated in Java")
+    override fun onEntityCollision(state: BlockState, world: World, pos: BlockPos, entity: Entity) {
+        if (world.isClient || entity !is PlayerEntity) {
+            return
         }
-        
+
+
         // Get portal entity and check player ownership
-        PocketPortalBlockEntity portalEntity = (PocketPortalBlockEntity) world.getBlockEntity(pos);
-        if (portalEntity == null) {
-            return;
-        }
-        
-        UUID portalUuid = portalEntity.getPlayerUuid();
-        UUID entityUuid = entity.getUuid();
-        
+        val portalEntity = world.getBlockEntity(pos) as PocketPortalBlockEntity? ?: return
+
+        val portalUuid = portalEntity.playerUuid
+        val entityUuid = entity.getUuid()
+
+
         // Teleport only if this player created the portal
-        if (portalUuid.equals(entityUuid)) {
-            ServerPlayerEntity player = (ServerPlayerEntity) entity;
-            ModDimensions.tpToPocket(world, player);
+        if (portalUuid == entityUuid) {
+            val player = entity as ServerPlayerEntity
+            tpToPocket(world, player)
         }
     }
 
     /**
      * Returns the ticker for handling the portal's time-based behavior
      */
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : 
-            (world1, pos, state1, blockEntity) -> {
-                if (blockEntity instanceof PocketPortalBlockEntity portal) {
-                    PocketPortalBlockEntity.tick(world1, pos, state1, portal);
-                }
-            };
+    override fun <T : BlockEntity?> getTicker(
+        world: World,
+        state: BlockState,
+        type: BlockEntityType<T>
+    ): BlockEntityTicker<T>? {
+        return if (world.isClient) null else
+            createTickerHelper(type, ModBlockEntities.POCKET_PORTAL) { world1, pos, state1, blockEntity ->
+                tick(world1, pos, state1, blockEntity)
+            }
+    }
+    @Suppress("UNCHECKED_CAST")
+    private fun <E : BlockEntity?, A : BlockEntity?> createTickerHelper(
+        type: BlockEntityType<E>,
+        targetType: BlockEntityType<A>?,
+        ticker: BlockEntityTicker<A>
+    ): BlockEntityTicker<E>? {
+        return if (type === targetType) ticker as BlockEntityTicker<E> else null
     }
 }
