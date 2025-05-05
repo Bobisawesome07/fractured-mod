@@ -51,10 +51,12 @@ object ModDimensions {
         .setSeed(1234L)
 
     /**
-     * Teleports a player to their pocket dimension
+     * Teleports the specified player to their personal pocket dimension and records their entry location.
      *
-     * @param world Source world
-     * @param user Player to teleport
+     * Stores the player's current block position before teleporting them to coordinates (0, 2, 0) in their unique pocket dimension.
+     *
+     * @param world The world from which the player is being teleported.
+     * @param user The player to teleport.
      */
     @JvmStatic
     fun tpToPocket(world: World?, user: PlayerEntity) {
@@ -75,10 +77,12 @@ object ModDimensions {
     }
 
     /**
-     * Teleports a player back to their entry location
+     * Teleports the player back to their previously stored entry location in the specified world.
      *
-     * @param world Source world
-     * @param user Player to teleport
+     * If an entry location was saved for the player, they are moved to that position with zero yaw and pitch.
+     *
+     * @param world The world to teleport the player into.
+     * @param user The player to teleport.
      */
     @JvmStatic
     fun tpBackToEntry(world: World?, user: PlayerEntity) {
