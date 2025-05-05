@@ -27,6 +27,13 @@ class PocketPortalBlockEntity(pos: BlockPos, state: BlockState?) :
     @JvmField
     var entryLocation: BlockPos? = null
 
+    /**
+     * Serializes the portal block entity's state to the provided NBT compound.
+     *
+     * Stores the portal's remaining duration, the creator's UUID (if present), and the entry location (if present).
+     *
+     * @param tag The NBT compound to write the entity's data into.
+     */
     public override fun writeNbt(tag: NbtCompound) {
         super.writeNbt(tag)
         tag.putInt("Duration", duration)
@@ -40,6 +47,13 @@ class PocketPortalBlockEntity(pos: BlockPos, state: BlockState?) :
         }
     }
 
+    /**
+     * Deserializes the portal block entity's state from the given NBT compound.
+     *
+     * Restores the portal's duration, the UUID of the player who created it, and the entry location if present.
+     *
+     * @param tag The NBT compound containing the serialized block entity data.
+     */
     override fun readNbt(tag: NbtCompound) {
         super.readNbt(tag)
         duration = tag.getInt("Duration")

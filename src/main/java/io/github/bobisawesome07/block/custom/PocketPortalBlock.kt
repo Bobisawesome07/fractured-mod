@@ -19,14 +19,24 @@ import net.minecraft.world.World
 class PocketPortalBlock(settings: Settings) : Block(settings), BlockEntityProvider {
     private var entryLocation: BlockPos? = null
 
+    /**
+     * Creates a new `PocketPortalBlockEntity` at the specified position and block state.
+     *
+     * @return The created block entity for this portal block.
+     */
     override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity? {
         return PocketPortalBlockEntity(pos, state)
     }
 
     /**
-     * Handles entity collision with the portal block.
-     * If the colliding entity is the player who created this portal,
-     * they will be teleported to their pocket dimension.
+     * Teleports the player who created the portal to their pocket dimension upon collision with the portal block.
+     *
+     * Stores the current block position as the entry location. Only the player whose UUID matches the portal's creator is teleported.
+     *
+     * @param state The current block state.
+     * @param world The world in which the collision occurs.
+     * @param pos The position of the portal block.
+     * @param entity The entity colliding with the portal.
      */
     @Deprecated("Deprecated in Java")
     override fun onEntityCollision(state: BlockState, world: World, pos: BlockPos, entity: Entity) {
