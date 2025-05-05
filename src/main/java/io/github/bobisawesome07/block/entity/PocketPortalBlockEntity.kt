@@ -23,12 +23,20 @@ class PocketPortalBlockEntity(pos: BlockPos, state: BlockState?) :
     @JvmField
     var playerUuid: UUID? = UUID.fromString("0983afc7-7d95-48bb-9c46-e7f4dc5b95cc")
 
+    /** Entry location of the player who created this portal */
+    @JvmField
+    var entryLocation: BlockPos? = null
+
     public override fun writeNbt(tag: NbtCompound) {
         super.writeNbt(tag)
         tag.putInt("Duration", duration)
 
         if (playerUuid != null) {
             tag.putString("PlayerUUID", playerUuid.toString())
+        }
+
+        if (entryLocation != null) {
+            tag.putLong("EntryLocation", entryLocation!!.asLong())
         }
     }
 
@@ -38,6 +46,10 @@ class PocketPortalBlockEntity(pos: BlockPos, state: BlockState?) :
 
         if (tag.contains("PlayerUUID")) {
             playerUuid = UUID.fromString(tag.getString("PlayerUUID"))
+        }
+
+        if (tag.contains("EntryLocation")) {
+            entryLocation = BlockPos.fromLong(tag.getLong("EntryLocation"))
         }
     }
 

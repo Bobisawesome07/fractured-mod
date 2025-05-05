@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.Difficulty
 import net.minecraft.world.GameRules
 import net.minecraft.world.World
@@ -30,6 +31,9 @@ object ModDimensions {
 
     // Cache to hold created pocket dimensions
     private val worldCache: MutableMap<String, RuntimeWorldHandle> = ConcurrentHashMap()
+
+    // Cache to hold entry locations
+    private val entryLocationCache: MutableMap<String, BlockPos> = ConcurrentHashMap()
 
     // Chunk generator for pocket dimensions with a barrier floor
     private val pocketGen = BarrierFloorChunkGenerator(
@@ -63,7 +67,26 @@ object ModDimensions {
         )
 
         if (targetWorld != null) {
+            // Store the entry location
+            entryLocationCache[user.uuidAsString] = user.blockPos
+
             serverPlayer.teleport(targetWorld, 0.0, 2.0, 0.0, 0f, 0f)
+        }
+    }
+
+    /**
+     * Teleports a player back to their entry location
+     *
+     * @param world Source world
+     * @param user Player to teleport
+     */
+    @JvmStatic
+    fun tpBackToEntry(world: World?, user: PlayerEntity) {
+        val serverPlayer = user as ServerPlayerEntity
+        val entryLocation = entryLocationCache[user.uuidAsString]
+
+        if (entryLocation != null) {
+            serverPlayer.teleport(world, entryLocation.x.toDouble(), entryLocation.y.toDouble(), entryLocation.z.toDouble(), 0f, 0f)
         }
     }
 

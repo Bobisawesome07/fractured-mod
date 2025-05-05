@@ -17,6 +17,8 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 class PocketPortalBlock(settings: Settings) : Block(settings), BlockEntityProvider {
+    private var entryLocation: BlockPos? = null
+
     override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity? {
         return PocketPortalBlockEntity(pos, state)
     }
@@ -32,13 +34,14 @@ class PocketPortalBlock(settings: Settings) : Block(settings), BlockEntityProvid
             return
         }
 
-
         // Get portal entity and check player ownership
         val portalEntity = world.getBlockEntity(pos) as PocketPortalBlockEntity? ?: return
 
         val portalUuid = portalEntity.playerUuid
         val entityUuid = entity.getUuid()
 
+        // Store the entry location
+        entryLocation = pos
 
         // Teleport only if this player created the portal
         if (portalUuid == entityUuid) {
